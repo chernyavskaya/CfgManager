@@ -1,5 +1,5 @@
-#include "interface/CfgManager.h"
-#include "interface/CfgManagerT.h"
+#include "ExternalTools/CfgManager/interface/CfgManager.h"
+#include "ExternalTools/CfgManager/interface/CfgManagerT.h"
 
 //**********getters***********************************************************************
 //----------GetSubCfg---------------------------------------------------------------------
@@ -454,11 +454,11 @@ void CfgManager::Print(std::ostream& out, Option_t* option) const
     std::string argkey = option;
     //---banner
     std::string banner = "configuration was created by "+username_+" on "+timestamp_;
-    for(int i=0; i<banner.size(); ++i)
+    for(unsigned int i=0; i<banner.size(); ++i)
         out << "=";
     out << std::endl;
     out << banner << std::endl;
-    for(int i=0; i<banner.size(); ++i)
+    for(unsigned int i=0; i<banner.size(); ++i)
         out << "=";
     out << std::endl;
     
@@ -557,7 +557,7 @@ void CfgManager::Errors(std::string key, int opt) const
         std::cout << "> CfgManager --- ERROR: key '"<< key.substr(5, key.size()) << "' not found" << std::endl;
         exit(-1);
     }
-    if(opt >= opts_.at(key).size())
+    if(opt >= int(opts_.at(key).size()))
     {
         std::cout << "> CfgManager --- ERROR: option '"<< key.substr(5, key.size()) << "' as less then "
              << opt << "values (" << opts_.at(key).size() << ")" << std::endl;
